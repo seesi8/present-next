@@ -195,7 +195,7 @@ export default function Page({}) {
                 <button onClick={(e) => submit(e)}>Submit</button>
             </form>
 
-            <p>{JSON.stringify(result)}</p>
+            <p className="small">{JSON.stringify(result)}</p>
             <button
                 onClick={() => {
                     setNumTrain(numTrain + 1);

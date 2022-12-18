@@ -71,3 +71,10 @@ body {
     min-height: 100vh;
     background-color: rgb(60, 56, 56) !important;
 }
+
+.small {
+    padding: 2vh 10vw;
+    width: 300;
+    height: 300;
+    font-size: 4px;
+}
