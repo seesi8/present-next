@@ -1,0 +1,4 @@
+
+stops: http://www.ctabustracker.com/bustime/api/v2/getstops?key=fy3txRGPR437MrCVLZtpxuFCw&rt=152&dir=Eastbound
+152: http://ctabustracker.com/bustime/api/v2/getpredictions?key=fy3txRGPR437MrCVLZtpxuFCw&rt=152&stpid=12527&format=json&top=3
+49: http://ctabustracker.com/bustime/api/v2/getpredictions?key=fy3txRGPR437MrCVLZtpxuFCw&rt=49&stpid=8417&format=json&top=1

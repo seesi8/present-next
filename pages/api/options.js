@@ -2,7 +2,7 @@
 
 export default async function handler(req, res) {
     let e = await fetch(
-        `http://ctabustracker.com/bustime/api/v2/getstops?key=fy3txRGPR437MrCVLZtpxuFCw&rt=152&dir=Eastbound&format=json`
+        `https://data.cityofchicago.org/resource/8pix-ypme.json`
     );
     res.status(200).json(await e.json());
 }
