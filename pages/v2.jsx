@@ -84,8 +84,8 @@ export default function Home(props) {
                     }}
                     name=""
                     id=""
-                    cols="300"
-                    rows="70"
+                    cols="100"
+                    rows="10"
                 ></textarea>
             )}
             {Object.keys(schema).map((bus, i) => {
