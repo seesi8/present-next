@@ -97,14 +97,15 @@ export default function Home(props) {
                 return (
                     <div className="bus" key={bus}>
                         <h3 className="info">
-                            {bus} Coming in:{" "}
+                            {bus}
+                            {": ​"}
                             <div className="time">
                                 {schema[bus].map((arg, index) => {
                                     return (
                                         <div key={index}>
                                             {`${getDifDate(arg)}${
                                                 schema[bus].length - 1 != index
-                                                    ? ", "
+                                                    ? ", ​"
                                                     : " ​"
                                             }`}
                                         </div>
