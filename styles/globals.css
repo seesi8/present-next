@@ -57,6 +57,7 @@ a {
 
 .time,
 .info {
+    display: flex;
     font-family: "dots";
     margin-left: 2vw;
     font-weight: 100;

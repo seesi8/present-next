@@ -1,4 +1,4 @@
-import { collection, doc, getDocs, getDoc } from "firebase/firestore";
+import { collection, doc, getDocs, getDoc, setDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import Train from "../components/train";
 import { firestore } from "../lib/firebase";
@@ -193,6 +193,17 @@ export default function Page({}) {
                 })}
 
                 <button onClick={(e) => submit(e)}>Submit</button>
+                <button
+                    onClick={async (e) => {
+                        e.preventDefault();
+                        const _stops = await setDoc(
+                            doc(firestore, "suggested", "suggested"),
+                            { suggested: JSON.stringify(buss) }
+                        );
+                    }}
+                >
+                    Set Suggested
+                </button>
             </form>
 
             <p className="small">{JSON.stringify(result)}</p>

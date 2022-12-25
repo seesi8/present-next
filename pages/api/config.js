@@ -34,7 +34,10 @@ export default async function handler(req, res) {
 
                         if (prediction) {
                             prediction = prediction.map((item) => {
-                                return { stop: stop, prd: item.prdtm };
+                                return {
+                                    stop: `${body[key].bussNumber} ${stop}`,
+                                    prd: item.prdtm,
+                                };
                             });
                         } else {
                             prediction = [null];
@@ -50,7 +53,10 @@ export default async function handler(req, res) {
 
                         if (prediction) {
                             prediction.map((item) => {
-                                prediction = { stop: stop, prd: item.prdtm };
+                                prediction = {
+                                    stop: `${body[key].bussNumber} ${stop}`,
+                                    prd: item.prdtm,
+                                };
                             });
                         } else {
                             prediction = null;
@@ -147,7 +153,7 @@ export default async function handler(req, res) {
                     if (prediction) {
                         prediction.map((item) => {
                             result.push({
-                                stop: stop,
+                                stop: `${body[key].bussNumber} ${stop}`,
                                 prd: item.prdtm,
                             });
                         });

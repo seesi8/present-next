@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { doc, getDoc } from "firebase/firestore";
+import { firestore } from "../lib/firebase";
 
 function getDifferenceInMinutes(date1, date2) {
     const diffInMs = Math.abs(date2 - date1);
@@ -31,6 +33,7 @@ export default function Home(props) {
 
     const getDataFromConfig = async (theConfig) => {
         if (theConfig) {
+            console.log(JSON.stringify({ v2: JSON.parse(theConfig) }));
             let dataCopy = await fetch("/api/config", {
                 method: "POST",
                 body: JSON.stringify({ v2: JSON.parse(theConfig) }),
@@ -45,10 +48,9 @@ export default function Home(props) {
                     setSchema(schemaCopy);
                 });
                 jsonData.forEach((element) => {
+                    console.log(element.prd);
                     let schemaCopy = schema;
-                    console.log(schemaCopy[element.stop]);
                     schemaCopy[element.stop].push(element.prd);
-                    console.log(schemaCopy);
                     setSchema(schemaCopy);
                 });
                 setSet(true);
@@ -61,8 +63,8 @@ export default function Home(props) {
     useEffect(() => {
         const interval = setInterval(function () {
             getDataFromConfig(config);
-        }, 30000);
-    }, []);
+        }, 3000);
+    }, [config]);
 
     return (
         <div className={styles.container}>
@@ -89,17 +91,20 @@ export default function Home(props) {
                 ></textarea>
             )}
             {Object.keys(schema).map((bus, i) => {
-                console.log(schema[bus]);
                 return (
-                    <div className="bus" key={i}>
+                    <div className="bus" key={bus}>
                         <h3 className="info">
                             {bus} Coming in:{" "}
-                            <h4 className="time">
+                            <div className="time">
                                 {schema[bus].map((index) => {
-                                    return <>{getDifDate(index) + ", "}</>;
+                                    return (
+                                        <div key={index}>
+                                            {getDifDate(index) + ", "}
+                                        </div>
+                                    );
                                 })}
                                 min{" "}
-                            </h4>
+                            </div>
                         </h3>
                     </div>
                 );
@@ -107,7 +112,7 @@ export default function Home(props) {
             {!set && (
                 <>
                     <button
-                        class="btn btn-secondary mx-5"
+                        className="btn btn-secondary mx-5"
                         onClick={() => {
                             setPopup(!popup);
                         }}
@@ -115,7 +120,18 @@ export default function Home(props) {
                         OpenConfig Edit
                     </button>
                     <button
-                        class="btn btn-primary mx-5"
+                        className="btn btn-warning mx-5"
+                        onClick={async () => {
+                            const _stops = await getDoc(
+                                doc(firestore, "suggested", "suggested")
+                            );
+                            setConfig(_stops.data().suggested);
+                        }}
+                    >
+                        Use Suggested
+                    </button>
+                    <button
+                        className="btn btn-primary mx-5"
                         onClick={() => {
                             getDataFromConfig(config);
                         }}
