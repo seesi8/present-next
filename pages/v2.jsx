@@ -42,17 +42,20 @@ export default function Home(props) {
             const jsonData = await dataCopy.json();
 
             if (jsonData[0]) {
+                let schemaCopy = schema;
+
                 jsonData.forEach((element) => {
-                    let schemaCopy = schema;
                     schemaCopy[element.stop] = [];
-                    setSchema(schemaCopy);
                 });
+
+                setSchema(schemaCopy);
+
                 jsonData.forEach((element) => {
                     console.log(element.prd);
-                    let schemaCopy = schema;
                     schemaCopy[element.stop].push(element.prd);
-                    setSchema(schemaCopy);
                 });
+                setSchema(schemaCopy);
+
                 setSet(true);
 
                 setData(jsonData);
@@ -96,13 +99,17 @@ export default function Home(props) {
                         <h3 className="info">
                             {bus} Coming in:{" "}
                             <div className="time">
-                                {schema[bus].map((index) => {
+                                {schema[bus].map((arg, index) => {
                                     return (
                                         <div key={index}>
-                                            {getDifDate(index) + ", "}
+                                            {`${getDifDate(arg)}${
+                                                schema[bus].length - 1 != index
+                                                    ? ", "
+                                                    : " ​"
+                                            }`}
                                         </div>
                                     );
-                                })}
+                                })}{" "}
                                 min{" "}
                             </div>
                         </h3>

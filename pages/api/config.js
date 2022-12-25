@@ -137,6 +137,13 @@ export default async function handler(req, res) {
 
                     const stops = body[key].stops;
                     let stop = "";
+                    let directionKey = {
+                        Southbound: "S",
+                        Eastbound: "E",
+                        Westbound: "W",
+                        Northbound: "N",
+                    };
+                    let direction = directionKey[body[key].direction];
 
                     for (let x in stops) {
                         if (stops[x].stpid == body[key].stop) {
@@ -153,7 +160,7 @@ export default async function handler(req, res) {
                     if (prediction) {
                         prediction.map((item) => {
                             result.push({
-                                stop: `${body[key].bussNumber} ${stop}`,
+                                stop: `${body[key].bussNumber} ${direction}. ${stop}`,
                                 prd: item.prdtm,
                             });
                         });
