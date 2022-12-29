@@ -12,7 +12,6 @@ export default function Page({}) {
     const submit = (e) => {
         e.preventDefault();
         setResult(buss);
-        console.log(buss);
     };
 
     useEffect(() => {
@@ -67,13 +66,10 @@ export default function Page({}) {
         optionsCopy[index].options = [];
 
         _stops.forEach((doc) => {
-            console.log(buss[index].direction);
             if (doc[buss[index].direction] == true) {
                 optionsCopy[index].options.push(doc);
             }
         });
-
-        console.log(optionsCopy[index].options);
 
         setBuss(optionsCopy);
     };
@@ -98,7 +94,6 @@ export default function Page({}) {
         setBuss(stopsCopy);
     };
 
-    console.log(buss);
     return (
         <main>
             <h1>Config</h1>
@@ -153,8 +148,6 @@ export default function Page({}) {
                                     name="cars"
                                     value={buss[key].stop}
                                     onChange={(e) => {
-                                        console.log(e.target.value);
-
                                         let copy = Object.assign({}, buss);
                                         copy[key].stop = e.target.value;
 
@@ -178,7 +171,7 @@ export default function Page({}) {
                 <hr />
 
                 {Object.keys(buss).map((key) => {
-                    console.log(key);
+                    consolelog(key);
                     const theKey = key;
                     return (
                         <Train

@@ -33,7 +33,6 @@ export default function Home(props) {
 
     const getDataFromConfig = async (theConfig) => {
         if (theConfig) {
-            console.log(JSON.stringify({ v2: JSON.parse(theConfig) }));
             let dataCopy = await fetch("/api/config", {
                 method: "POST",
                 body: JSON.stringify({ v2: JSON.parse(theConfig) }),
@@ -44,14 +43,16 @@ export default function Home(props) {
             if (jsonData[0]) {
                 let schemaCopy = schema;
 
-                jsonData.forEach((element) => {
-                    schemaCopy[element.stop] = [];
+                Object.keys(schemaCopy).forEach((element) => {
+                    schemaCopy[element] = [];
                 });
 
                 setSchema(schemaCopy);
 
                 jsonData.forEach((element) => {
-                    console.log(element.prd);
+                    if (schemaCopy[element.stop] == undefined) {
+                        schemaCopy[element.stop] = [];
+                    }
                     schemaCopy[element.stop].push(element.prd);
                 });
                 setSchema(schemaCopy);
@@ -66,7 +67,7 @@ export default function Home(props) {
     useEffect(() => {
         const interval = setInterval(function () {
             getDataFromConfig(config);
-        }, 3000);
+        }, 30000);
     }, [config]);
 
     return (

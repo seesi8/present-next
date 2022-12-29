@@ -11,7 +11,6 @@ function getDifferenceInMinutes(date1, date2) {
 }
 
 function getDifDate(date) {
-    console.log(date);
     const year = date.substring(0, 4);
     const month = date.substring(4, 6);
     const day = date.substring(6, 8);
@@ -30,8 +29,6 @@ export default function Home(props) {
     const [data, setData] = useState([]);
 
     const getDataFromConfig = async () => {
-        console.log({ v1: JSON.parse(config) });
-
         if (ready) {
             let dataCopy = await fetch("/api/config", {
                 method: "POST",
@@ -48,7 +45,6 @@ export default function Home(props) {
 
     useEffect(() => {
         const interval = setInterval(function () {
-            console.log("nice", ready);
             getDataFromConfig();
         }, 30000);
     }, []);
@@ -66,7 +62,6 @@ export default function Home(props) {
                 ></textarea>
             )}
             {data.map((bus, i) => {
-                console.log(bus);
                 return (
                     <div className="bus" key={i}>
                         <h3 className="info">

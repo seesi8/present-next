@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 export default async function handler(req, res) {
     if (req.method != "POST") {
         res.status(200).json({ error: "no POST" });
@@ -130,6 +132,7 @@ export default async function handler(req, res) {
         keys = Object.keys(body);
 
         let result = [];
+        console.log("====");
         await Promise.all(
             keys.map(async (key) => {
                 if (body[key].buss == true) {
@@ -175,12 +178,11 @@ export default async function handler(req, res) {
                     );
 
                     const prdJson = await prd.json();
-
-                    console.log(prdJson.ctatt.eta);
-
+                    console.log(`--${body[key].direction}--`);
                     prdJson.ctatt.eta.forEach((element) => {
+                        console.log(element.prdt);
                         const date = element.prdt;
-                        console.log(date);
+
                         const year = date.substring(0, 4);
                         const month = date.substring(5, 7);
                         const day = date.substring(8, 10);
@@ -210,7 +212,7 @@ export default async function handler(req, res) {
                             if (stops[x].stop_id == body[key].stop) {
                                 stop = `${getColorFromInitial(
                                     body[key].direction
-                                )} line at ${stops[x].station_name}`;
+                                )} line at ${stops[x].stop_name}`;
                             }
                         }
 
