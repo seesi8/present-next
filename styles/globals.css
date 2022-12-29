@@ -62,7 +62,21 @@ a {
     margin-left: 2vw;
     font-weight: 100;
     color: orange;
-    font-size: 6vh;
+
+    font-size: 2.8vw;
+}
+
+@media (min-width: 1700px) {
+    .time,
+    .info {
+        display: flex;
+        font-family: "dots";
+        margin-left: 2vw;
+        font-weight: 100;
+        color: orange;
+
+        font-size: 2.5vw;
+    }
 }
 
 body {
