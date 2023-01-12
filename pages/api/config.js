@@ -178,10 +178,12 @@ export default async function handler(req, res) {
                     );
 
                     const prdJson = await prd.json();
+
                     console.log(`--${body[key].direction}--`);
+
                     prdJson.ctatt.eta.forEach((element) => {
-                        console.log(element.prdt);
-                        const date = element.prdt;
+                        console.log(element.arrT);
+                        const date = element.arrT;
 
                         const year = date.substring(0, 4);
                         const month = date.substring(5, 7);
@@ -208,6 +210,8 @@ export default async function handler(req, res) {
                             return dict[initial];
                         };
 
+                        //change stop name to be readable
+
                         for (let x in stops) {
                             if (stops[x].stop_id == body[key].stop) {
                                 stop = `${getColorFromInitial(
@@ -215,6 +219,8 @@ export default async function handler(req, res) {
                                 )} line at ${stops[x].stop_name}`;
                             }
                         }
+
+                        //push to final results
 
                         result.push({
                             prd: `${year}${month}${day} ${time}`,

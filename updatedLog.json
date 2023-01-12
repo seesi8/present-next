@@ -1,0 +1,50 @@
+{
+    "1": {
+        "options": 0,
+        "stops": 0,
+        "bussNumber": "152",
+        "buss": true,
+        "direction": "Eastbound",
+        "stop": "12527"
+    },
+    "2": {
+        "options": 0,
+        "stops": 0,
+        "bussNumber": "152",
+        "buss": true,
+        "direction": "Westbound",
+        "stop": "12571"
+    },
+    "3": {
+        "options": 0,
+        "stops": 0,
+        "bussNumber": "49",
+        "buss": true,
+        "direction": "Southbound",
+        "stop": "8195"
+    },
+    "4": {
+        "options": 0,
+        "stops": 0,
+        "bussNumber": "49",
+        "buss": true,
+        "direction": "Northbound",
+        "stop": "8417"
+    },
+    "5": {
+        "options": 0,
+        "stops": 0,
+        "bussNumber": "94",
+        "buss": true,
+        "direction": "Southbound",
+        "stop": "17786"
+    },
+    "-1": {
+        "direction": "brn",
+        "stop": "30278"
+    },
+    "-2": {
+        "direction": "brn",
+        "stop": "30277"
+    }
+}

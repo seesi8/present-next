@@ -15,3 +15,9 @@ for x in fJson.keys():
             updated[x][y] = 0
 
 print(updated)
+
+newf = open('updatedLog.txt', 'w')
+
+newf.write(json.dumps(updated))
+
+newf.close()
