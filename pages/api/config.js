@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-export default async function handler(req, res) {
+export default async function POST(req, res) {
     if (req.method != "POST") {
         res.status(200).json({ error: "no POST" });
     }
