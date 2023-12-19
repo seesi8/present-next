@@ -171,7 +171,7 @@ export default function Page({}) {
                 <hr />
 
                 {Object.keys(buss).map((key) => {
-                    consolelog(key);
+                    console.log(key);
                     const theKey = key;
                     return (
                         <Train
